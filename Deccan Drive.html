@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Deccan Drive | Taxi and Driver Service, Bommanahalli, Bangalore</title>
+<meta name="description" content="Taxis and professional drivers in Bommanahalli, Bangalore. Check your fare online.">
+<script>
+// Set theme before paint: saved choice, else the device setting
+(function(){var t;try{t=localStorage.getItem("theme")}catch(e){}
+if(!t)t="light";
+document.documentElement.setAttribute("data-theme",t)})();
+</script>
+<style>
+/* ===== Colours: edit here ===== */
+:root{
+  --bg:#ffffff; --field:#f1f4f8; --surface:#ffffff; --outline:#c3ccd8; --panel:#0b2a5b; --ink:#102039; --muted:#5a6676; --line:#dfe5ec;
+  --blue:#0b2a5b; --blue-hover:#123a7a; --hero:#ffffff; --on-hero:#0b2a5b; --on-hero-muted:#5a6676;
+  --green:#2e7d4f; --green-soft:#e5f1ea;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+:root[data-theme="dark"]{
+  --bg:#09121f; --field:#0a1628; --outline:rgba(255,255,255,.35); --panel:#0c1a30; --surface:#0f1d33; --ink:#e7edf6; --muted:#97a4b6; --line:#1e3050;
+  --blue:#3a78d8; --blue-hover:#5590ea; --hero:#0c1a30; --on-hero:#eef3fb; --on-hero-muted:#9fb0c9;
+  --green:#5fb685; --green-soft:#12301f;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--green);outline-offset:2px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+h1,h2,h3{margin:0;line-height:1.15;letter-spacing:-.01em}
+.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--blue);color:#fff;border:0;border-radius:8px;padding:12px 22px;font:600 16px system-ui,sans-serif;text-decoration:none;cursor:pointer}
+.btn:hover{background:var(--blue-hover)}
+.btn.green{background:var(--green)}
+.btn.green:hover{filter:brightness(1.08)}
+[data-theme="dark"] .btn.green{color:#08150e}
+.btn.outline{background:transparent;color:var(--on-hero);border:1.5px solid var(--outline)}
+.btn.outline:hover{background:var(--field)}
+
+/* header */
+header{position:sticky;top:0;z-index:10;background:var(--hero);padding-top:env(safe-area-inset-top,0px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--on-hero);font-weight:700;font-size:19px}
+.brand span{background:#fff;border-radius:8px;padding:3px 8px;display:flex}
+.brand img{height:34px;display:block}
+.actions{display:flex;gap:10px;align-items:center}
+.actions .btn{padding:8px 16px;font-size:15px}
+.theme{width:40px;height:40px;border-radius:8px;border:1.5px solid var(--outline);background:transparent;color:var(--on-hero);font-size:18px;cursor:pointer}
+
+/* hero */
+.hero{background:var(--hero);color:var(--on-hero);padding:56px 0 64px}
+.hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+.hero h1{font-size:clamp(34px,5.5vw,56px);font-weight:700}
+.hero p{color:var(--on-hero-muted);font-size:18px;max-width:44ch;margin:16px 0 26px}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr}}
+
+/* calculator */
+.calc{background:var(--surface);color:var(--ink);border-radius:14px;padding:24px;border-top:4px solid var(--green);border:1px solid var(--line);border-top:4px solid var(--green);box-shadow:0 12px 32px rgba(11,42,91,.10)}
+.calc h2{font-size:26px}
+.sub{color:var(--muted);font-size:14px;margin:4px 0 14px}
+.tabs{display:grid;grid-template-columns:1fr 1fr;background:var(--field);border-radius:8px;padding:4px;margin-bottom:6px}
+.tabs button{border:0;background:transparent;color:var(--muted);padding:9px;border-radius:6px;font:500 15px system-ui,sans-serif;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--surface);color:var(--ink);font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+label{display:block;font-size:13px;font-weight:600;color:var(--muted);margin:12px 0 5px}
+select{width:100%;padding:11px 12px;border-radius:8px;border:1px solid var(--line);background:var(--field);color:var(--ink);font:400 16px system-ui,sans-serif}
+.hide{display:none!important}
+.result{margin-top:18px;background:var(--green-soft);border-radius:10px;padding:16px 18px}
+.amt{font-size:34px;font-weight:700;color:var(--green);line-height:1.1}
+.meta{font-size:14px;color:var(--muted);margin-top:6px}
+.result ul{list-style:none;margin:10px 0 0;padding:10px 0 0;border-top:1px solid var(--line);font-size:14px}
+.result li{display:flex;justify-content:space-between;gap:12px}
+.note{font-size:12px;color:var(--muted);margin:10px 0 0}
+.calc .btn{width:100%;margin-top:14px}
+
+/* sections */
+section{padding:72px 0}
+section h2{font-size:clamp(28px,4vw,38px);margin-bottom:28px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:820px){.grid{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:24px;border-left:4px solid var(--green)}
+.card h3{font-size:20px;margin-bottom:8px}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.contact{background:var(--panel);color:#eef3fb;border-radius:14px;padding:40px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.contact h2{margin:0 0 6px}
+.contact p{margin:0;color:#b4c3dc}
+.contact .btn.outline{color:#fff;border-color:rgba(255,255,255,.4)}
+.contact .btn.outline:hover{background:rgba(255,255,255,.1)}
+.contact .cta{display:flex;gap:12px;flex-wrap:wrap}
+footer{padding:12px 0 32px;color:var(--muted);font-size:14px;text-align:center}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header><div class="wrap bar">
+  <a class="brand" href="#top"><img src="croplogo.png" alt="Deccan Drive logo">Deccan Drive</a>
+  <div class="actions">
+    <a class="btn green" data-call href="#">Call</a>
+    <button class="theme" id="theme" aria-label="Switch light or dark mode"></button>
+  </div>
+</div></header>
+
+<main id="top">
+<div class="hero"><div class="wrap">
+  <div>
+    <h1>Taxis and drivers in Bommanahalli, Bangalore.</h1>
+    <p>Airport drops, office runs and outstation trips with a verified driver. Check your fare before you book.</p>
+    <div class="cta"><a class="btn green" href="#calc">Check your fare</a><a class="btn outline" data-call href="#">Call now</a></div>
+  </div>
+
+  <div class="calc" id="calc">
+    <h2>Fare calculator</h2>
+    <p class="sub">Pick your locations to see an estimate.</p>
+    <div class="tabs">
+      <button id="tTaxi" aria-selected="true">Book a taxi</button>
+      <button id="tDriver" aria-selected="false">Hire a driver</button>
+    </div>
+
+    <div id="taxiBox">
+      <label for="pick">Pickup</label><select id="pick"></select>
+      <label for="drop">Drop</label><select id="drop"></select>
+      <label for="car">Vehicle</label><select id="car"></select>
+      <label for="trip">Trip</label>
+      <select id="trip"><option value="1">One way</option><option value="2">Round trip</option></select>
+    </div>
+    <div id="driverBox" class="hide">
+      <label for="hrs">Hours needed</label><select id="hrs"></select>
+    </div>
+    <label for="when">Pickup time</label>
+    <select id="when"><option value="0">Day (6 AM to 10 PM)</option><option value="1">Night (10 PM to 6 AM)</option></select>
+
+    <div class="result" aria-live="polite">
+      <div class="amt" id="amt"></div>
+      <div class="meta" id="meta"></div>
+      <ul id="lines"></ul>
+    </div>
+    <a class="btn green" id="book" href="#">Book on WhatsApp</a>
+    <p class="note">Distances are approximate. Tolls, parking and waiting are extra. The final fare is confirmed when you book.</p>
+  </div>
+</div></div>
+
+<section><div class="wrap">
+  <h2>What we do</h2>
+  <div class="grid">
+    <div class="card"><h3>City and airport taxi</h3><p>Hatchbacks, sedans and SUVs for rides across Bangalore, including airport transfers.</p></div>
+    <div class="card"><h3>Drivers for your car</h3><p>Hire an experienced driver by the hour when you would rather not drive yourself.</p></div>
+    <div class="card"><h3>Outstation trips</h3><p>One-way and round trips to Mysuru, Hosur and other nearby cities.</p></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="contact">
+    <div><h2>Ready to ride?</h2><p>Call or message us with your pickup and drop.</p></div>
+    <div class="cta"><a class="btn green" data-call href="#">Call us</a><a class="btn outline" id="wa" href="#">WhatsApp</a></div>
+  </div>
+</div></section>
+</main>
+<footer><div class="wrap">Deccan Drive, Bommanahalli, Bangalore &middot; www.deccandrive.com</div></footer>
+
+<script>
+/* ========= EDIT THIS BLOCK ========= */
+var PHONE = "91XXXXXXXXXX";        // country code + number, no + or spaces
+
+// Rates: fill in numbers (rupees). Empty "" means "not set yet".
+var CARS = [
+  { name: "Hatchback", perKm: "", minFare: "" },
+  { name: "Sedan",     perKm: "", minFare: "" },
+  { name: "SUV",       perKm: "", minFare: "" }
+];
+var DRIVER_PER_HOUR = "";          // driver for your own car
+var DRIVER_MIN_HOURS = 3;
+var NIGHT_EXTRA_PERCENT = "";      // e.g. 15 adds 15% at night
+
+var ROAD_FACTOR = 1.35;            // straight-line distance to road distance
+
+// Locations: [name, latitude, longitude]. First one is your base.
+var PLACES = [
+  ["Bommanahalli", 12.9081, 77.6238], ["Silk Board", 12.9177, 77.6238], ["HSR Layout", 12.9116, 77.6474],
+  ["BTM Layout", 12.9166, 77.6101], ["Koramangala", 12.9352, 77.6245], ["Jayanagar", 12.9308, 77.5838],
+  ["JP Nagar", 12.9063, 77.5857], ["Banashankari", 12.9255, 77.5468], ["Bannerghatta Road", 12.893, 77.597],
+  ["Electronic City", 12.8452, 77.6602], ["Bellandur", 12.9304, 77.6784], ["Sarjapur Road", 12.917, 77.685],
+  ["Marathahalli", 12.9569, 77.7011], ["Whitefield", 12.9698, 77.75], ["Indiranagar", 12.9784, 77.6408],
+  ["MG Road", 12.9756, 77.6068], ["Majestic (Railway Station)", 12.9767, 77.5713], ["Yeshwanthpur", 13.0285, 77.5409],
+  ["Hebbal", 13.0358, 77.597], ["KR Puram", 13.0075, 77.696], ["Kempegowda Airport", 13.1986, 77.7066],
+  ["Hosur", 12.7409, 77.8253], ["Mysuru", 12.2958, 76.6394]
+];
+/* ========= END EDIT BLOCK ========= */
+
+var $ = function (id) { return document.getElementById(id); };
+var mode = "taxi";
+var isSet = function (v) { return v !== "" && !isNaN(+v); };
+var rs = function (n) { return "\u20B9" + Math.round(n).toLocaleString("en-IN"); };
+
+function distance(a, b) {
+  var r = Math.PI / 180, dLat = (b[1] - a[1]) * r, dLng = (b[2] - a[2]) * r;
+  var h = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+          Math.cos(a[1] * r) * Math.cos(b[1] * r) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
+  return 2 * 6371 * Math.asin(Math.sqrt(h)) * ROAD_FACTOR;
+}
+
+function options(list, placeholder) {
+  return (placeholder ? '<option value="">' + placeholder + '</option>' : "") +
+    list.map(function (n, i) { return '<option value="' + i + '">' + n + "</option>"; }).join("");
+}
+
+function show(amount, meta, lines, msg) {
+  $("amt").textContent = amount;
+  $("meta").textContent = meta;
+  $("lines").innerHTML = lines.map(function (l) { return "<li><span>" + l[0] + "</span><span>" + l[1] + "</span></li>"; }).join("");
+  $("book").href = "https://wa.me/" + PHONE + "?text=" + encodeURIComponent(msg);
+}
+
+function update() {
+  var night = $("when").value === "1";
+  var nightPct = isSet(NIGHT_EXTRA_PERCENT) ? +NIGHT_EXTRA_PERCENT : 0;
+
+  if (mode === "driver") {
+    var hrs = +$("hrs").value;
+    var msg = "Hi Deccan Drive, I need a driver for " + hrs + " hours" + (night ? " (night)" : "") + ".";
+    if (!isSet(DRIVER_PER_HOUR)) return show("Rates coming soon", hrs + " hours, driver for your car", [], msg + " Please share the rate.");
+    var total = Math.max(hrs, DRIVER_MIN_HOURS) * DRIVER_PER_HOUR, lines = [["Driver, " + hrs + " hrs", rs(total)]];
+    if (night && nightPct) { lines.push(["Night extra (" + nightPct + "%)", rs(total * nightPct / 100)]); total *= 1 + nightPct / 100; }
+    return show(rs(total), hrs + " hours, driver for your car", lines, msg + " Estimate " + rs(total) + ".");
+  }
+
+  if ($("drop").value === "") return show("Select a drop", "Choose where you are going.", [], "Hi Deccan Drive, I would like to book a taxi.");
+  var from = PLACES[$("pick").value], to = PLACES[$("drop").value];
+  if (from === to) return show("Same location", "Pick a different drop.", [], "Hi Deccan Drive, I would like to book a taxi.");
+
+  var car = CARS[$("car").value], trips = +$("trip").value, km = distance(from, to) * trips;
+  var route = from[0] + " to " + to[0] + (trips === 2 ? " and back" : "");
+  var text = "Hi Deccan Drive, I would like to book a " + car.name + " from " + route + (night ? " (night pickup)" : "") + ".";
+  var lines = [["Distance (approx)", Math.round(km) + " km"]];
+  if (!isSet(car.perKm)) return show("~" + Math.round(km) + " km", route + ". Rates coming soon.", lines, text + " Please share the fare.");
+
+  var fare = Math.max(isSet(car.minFare) ? +car.minFare * trips : 0, km * car.perKm), total = fare;
+  lines.push([car.name + " fare", rs(fare)]);
+  if (night && nightPct) { lines.push(["Night extra (" + nightPct + "%)", rs(fare * nightPct / 100)]); total = fare * (1 + nightPct / 100); }
+  show(rs(total), route + ", " + car.name, lines, text + " Estimate " + rs(total) + ".");
+}
+
+function setMode(m) {
+  mode = m;
+  $("tTaxi").setAttribute("aria-selected", m === "taxi");
+  $("tDriver").setAttribute("aria-selected", m === "driver");
+  $("taxiBox").classList.toggle("hide", m !== "taxi");
+  $("driverBox").classList.toggle("hide", m !== "driver");
+  update();
+}
+
+/* theme toggle */
+function paintTheme() { $("theme").textContent = document.documentElement.getAttribute("data-theme") === "dark" ? "\u2600" : "\u263E"; }
+$("theme").onclick = function () {
+  var t = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", t);
+  try { localStorage.setItem("theme", t); } catch (e) {}
+  paintTheme();
+};
+
+/* setup */
+var names = PLACES.map(function (p) { return p[0]; });
+$("pick").innerHTML = options(names);
+$("drop").innerHTML = options(names, "Select drop location");
+$("car").innerHTML = options(CARS.map(function (c) { return c.name; }));
+var h = ""; for (var i = DRIVER_MIN_HOURS; i <= 12; i++) h += '<option value="' + i + '">' + i + " hours</option>";
+$("hrs").innerHTML = h;
+["pick", "drop", "car", "trip", "hrs", "when"].forEach(function (id) { $(id).onchange = update; });
+$("tTaxi").onclick = function () { setMode("taxi"); };
+$("tDriver").onclick = function () { setMode("driver"); };
+document.querySelectorAll("[data-call]").forEach(function (a) { a.href = "tel:+" + PHONE; });
+$("wa").href = "https://wa.me/" + PHONE + "?text=" + encodeURIComponent("Hi Deccan Drive, I would like to book a ride.");
+paintTheme();
+update();
+</script>
+</body>
+</html>
